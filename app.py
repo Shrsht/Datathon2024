@@ -26,14 +26,14 @@ import io
 
 
 
-st.set_page_config(page_title = 'Resume Uploader")
+st.set_page_config(page_title = "Resume Uploader")
 
 resume_file = st.file_uploader(label = "Please Upload your Resume (pdf files only)")
 
 if resume_file:
 
   res_object = Resume(resume_file)
-  resume_string =  res_object.parse_file(resume_file)
+  resume_string =  res_object.parse_file()
   resume_string = res_object.clean_string(resume_string)
 
 
