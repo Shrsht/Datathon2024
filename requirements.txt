@@ -1,8 +1,10 @@
 pandas
-torch
-spacy
-cupy
-torchvision 
-torchaudio
-cuda = 12.2
+pdfminer==20191125
+pdfminer.six==20181108
+streamlit ==1.29.0
+plotly
+nltk
+stopwords
 transformers
+spacy==3.5.0
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl

@@ -1,3 +1,4 @@
+import pdfminer
 from pdfminer.converter import TextConverter
 from pdfminer.pdfinterp import PDFPageInterpreter
 from pdfminer.pdfinterp import PDFResourceManager
@@ -9,25 +10,26 @@ import re
 from nltk.corpus import stopwords
 
 
-
 class Resume(object):
-  def __init__(self, file):
-    self.file = file
+
+    def __init__(self, file):
+        self.file = file
+        
   
   
   
-  def parse_file(self):
-    with open(self.file, 'rb') as fh:
-        # iterate over all pages of PDF document
-        for page in PDFPage.get_pages(fh, caching=True, check_extractable=True):
+    def parse_file(self):
+        with open(self.file, 'rb') as fh:
+            # iterate over all pages of PDF document
+            for page in PDFPage.get_pages(fh, caching=True, check_extractable=True):
             # creating a resoure manager
-            resource_manager = PDFResourceManager()
+                resource_manager = PDFResourceManager()
 
             # create a file handle
-            fake_file_handle = io.StringIO()
+                fake_file_handle = io.StringIO()
 
             # creating a text converter object
-            converter = TextConverter(
+                converter = TextConverter(
                                 resource_manager,
                                 fake_file_handle,
                                 codec='utf-8',
@@ -35,33 +37,35 @@ class Resume(object):
                         )
 
             # creating a page interpreter
-            page_interpreter = PDFPageInterpreter(
+                page_interpreter = PDFPageInterpreter(
                                 resource_manager,
                                 converter
                             )
 
             # process current page
-            page_interpreter.process_page(page)
+                page_interpreter.process_page(page)
 
             # extract text
-            text = fake_file_handle.getvalue()
-            return text
+                text = fake_file_handle.getvalue()
 
-            # close open handles
-            converter.close()
-            fake_file_handle.close()
+                stop = stopwords.words('english')
+                res_clean = text.replace("-", " ")
+                res_clean = res_clean.replace(",", "")
+                res_clean = re.sub("[\n]", " ",res_clean)
+                res_clean = re.sub("[.!?/\()-,_:]", "",res_clean)
+                #es_clean = res_clean.lower()
+                res_clean = " ".join([word for word in res_clean.split(" ") if word not in stop])
+                subs = re.sub("[\d+][+-]", "",res_clean)
+                subs = re.sub("[’']", "",res_clean)
+                
+                return res_clean
 
-    def clean_string(self, sentence):
-      stop = stopwords.words('english')
-      sentence_clean = sentence.replace("-", " ")
-      sentence_clean = sentence.replace(",", "")
-      sentence_clean = re.sub("[\n]", " ",sentence_clean)
-      sentence_clean = re.sub("[.!?/\()-,:]", "",sentence_clean)
-      sentence_clean = sentence_clean.lower()
-      sentence_clean = " ".join([word for word in sentence_clean.split(" ") if word not in stop])
-      subs = re.sub("[\d+][+-]", "",sentence)
-      subs = re.sub("[’']", "",sentence)
-      return sentence_clean
+                # close open handles
+                # converter.close()
+                # fake_file_handle.close()
+
+
+
 
 
       
