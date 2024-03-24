@@ -32,8 +32,9 @@ resume_file = st.file_uploader(label = "Please Upload your Resume (pdf files onl
 
 if resume_file:
 
-  resume_string =  Resume.parse_file(resume_file)
-  resume_string = Resume.clean_string(resume_string)
+  res_object = Resume(resume_file)
+  resume_string =  res_object.parse_file(resume_file)
+  resume_string = res_object.clean_string(resume_string)
 
 
 
