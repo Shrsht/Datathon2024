@@ -1,0 +1,8 @@
+pandas
+torch
+spacy
+cupy
+torchvision 
+torchaudio
+cuda = 12.2
+transformers
