@@ -10,7 +10,7 @@ Using both the keywords and their corresponding labels, our Streamlit web-app ge
 
 ### Data Collection:
 
-The **Selenium_Scraping** Notebook in this Repository contains the code used to scrape 250 job_descirptions off LinkedIn. These job descriptions have been cleaned and stored in the **clean_jobs.csv** file
+The **Selenium_Scraping.py** Notebook in this Repository contains the code used to scrape 250 job_descirptions off LinkedIn. These job descriptions have been cleaned and stored in the **Scraped_Jobs_Descripts.csv** file
 
 ### Model Building:
 
