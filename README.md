@@ -2,7 +2,7 @@
 
 Our submission to Datathon 2024 has been to create a Job-Application Assistant that accepts an uploaded Resume and uses a Fine-Tuned BERT() Named Entity Recognition model to generate analytics on the applicant's fit for a given job-description as well as provide recommendations on missing key-words and phrases to the resume. 
 
-This model is unique in that it does **NOT** make use of any pre-trained transformer models and was actually trained and fine-tuned on manually collected and annotated job-descriptions. This allowed the BERT() model to not only identify a set of keywords form a document but to also predict labels for these keywords such as 'education','technical-skills','interpersonal-skills',etc. 
+This model is unique in that it does **NOT** make use of any pre-trained transformer models and was actually locally trained and fine-tuned on individually collected and annotated job-descriptions. This allowed the BERT() model to not only identify a set of keywords form a document but to also predict labels for these keywords such as 'education','technical-skills','interpersonal-skills',etc. 
 
 Using both the keywords and their corresponding labels, our Streamlit web-app generates visual analytics and provides reccomendations on missing keywords. 
 
